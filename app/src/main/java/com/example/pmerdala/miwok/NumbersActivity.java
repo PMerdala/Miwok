@@ -40,12 +40,8 @@ public class NumbersActivity extends AppCompatActivity {
 
     private void displayWords(List<String> words){
         LinearLayout parentView = (LinearLayout) findViewById(R.id.numbersView);
-        int i = 0;
-        while(i < 10){
-//        for (int i=0;i<10;i++) {
-//            Log.v("NumbersActivity", "Word at index " + i+": " + words.get(i));
+        for (int i=0;i<words.size();i++) {
             parentView.addView(createTextView(words.get(i)));
-            i++;
         }
     }
 
