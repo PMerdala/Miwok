@@ -12,14 +12,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-//        createOnClickListener(R.id.numbers, NumbersActivity.class);
+        createOnClickListener(R.id.numbers, NumbersActivity.class);
         createOnClickListener(R.id.family,FamilyActivity.class);
         createOnClickListener(R.id.colors,ColorsActivity.class);
         createOnClickListener(R.id.phrases, PhrasesActivity.class);
-    }
-
-    public void openNumbersList(View view){
-        executeIntent(NumbersActivity.class);
     }
 
     private void createOnClickListener(int id,final Class<? extends AppCompatActivity> clazz){

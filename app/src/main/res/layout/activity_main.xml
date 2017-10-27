@@ -11,8 +11,7 @@
         android:id="@+id/numbers"
         style="@style/CategoryStyle"
         android:text="@string/category_numbers"
-        android:background="@color/category_numbers"
-        android:onClick="openNumbersList"/>
+        android:background="@color/category_numbers"/>
     <TextView
         android:id="@+id/family"
         style="@style/CategoryStyle"
