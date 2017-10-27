@@ -12,10 +12,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        createOnClickListener(R.id.numbers, NumbersActivity.class);
+//        createOnClickListener(R.id.numbers, NumbersActivity.class);
         createOnClickListener(R.id.family,FamilyActivity.class);
         createOnClickListener(R.id.colors,ColorsActivity.class);
         createOnClickListener(R.id.phrases, PhrasesActivity.class);
+    }
+
+    public void openNumbersList(View view){
+        executeIntent(NumbersActivity.class);
     }
 
     private void createOnClickListener(int id,final Class<? extends AppCompatActivity> clazz){
@@ -23,11 +27,13 @@ public class MainActivity extends AppCompatActivity {
         textview.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this,clazz);
-                if (intent.resolveActivity(getPackageManager())!=null){
-                    startActivity(intent);
-                }
+                executeIntent(clazz);
             }
         });
+    }
+
+    void executeIntent(final Class<? extends AppCompatActivity> clazz){
+        Intent intent = new Intent(this,clazz);
+        startActivity(intent);
     }
 }
