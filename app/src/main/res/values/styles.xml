@@ -9,11 +9,31 @@
     </style>
 
     <style name="CategoryStyle">
-        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">@dimen/list_item_height</item>
         <item name="android:textColor">@android:color/white</item>
         <item name="android:textStyle">bold</item>
+        <item name="android:textAppearance">?android:textAppearanceMedium</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="list_word_layout">
+    </style>
+
+    <style name="list_word_translation_layout">
+        <item name="android:paddingLeft">@dimen/activity_horizontal_margin</item>
+ <!--       <item name="android:paddingTop">@dimen/activity_vertical_margin</item>
+        <item name="android:paddingBottom">@dimen/activity_vertical_margin</item>-->
+   </style>
+
+    <style name="list_item">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/tan_background</item>
+        <item name="android:textStyle">bold</item>
+<!--        <item name="android:textSize">18sp</item>-->
         <item name="android:textAppearance">?android:textAppearanceMedium</item>
         <item name="android:gravity">center_vertical</item>
     </style>

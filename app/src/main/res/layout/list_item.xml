@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/item_height"
+    android:orientation="horizontal"
+    style="@style/list_word_layout">
+    <ImageView
+        android:id="@+id/image"
+        android:layout_width="@dimen/image_width"
+        android:layout_height="match_parent"
+        tools:background="@color/tan_background"
+        tools:src="@drawable/number_one"/>
+    <LinearLayout
+        android:id="@+id/list_word_translation_layout"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        style = "@style/list_word_translation_layout"
+        tools:background="@color/category_numbers">
+    <TextView
+        android:id="@+id/miwok_text_view"
+        style="@style/list_item"
+        android:gravity="bottom"
+        tools:text="lutti"/>
+    <TextView
+        android:id="@+id/default_text_view"
+        style="@style/list_item"
+        android:gravity="top"
+        tools:text="one"/>
+    </LinearLayout>
+</LinearLayout>
