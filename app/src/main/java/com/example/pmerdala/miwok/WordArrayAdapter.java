@@ -29,7 +29,6 @@ public class WordArrayAdapter extends ArrayAdapter<Word> {
     private final static int translate_word_layout = R.id.list_word_translation_layout;
     private final static int play_icon_id = R.id.play_icon;
     private final int backgroudColorResourceId;
-    private MediaPlayer mediaPlayer;
 
     public WordArrayAdapter(@NonNull Context context, int backgroudColorResourceId, @NonNull List<Word> objects) {
         super(context, 0, objects);
@@ -63,33 +62,8 @@ public class WordArrayAdapter extends ArrayAdapter<Word> {
                 imageView.setVisibility(View.GONE);
             }
         }
-        view.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                play(word);
-            }
-        });
     }
 
-
-    private void play(Word word) {
-        if (word.hasSound()) {
-            if (mediaPlayer == null) {
-                mediaPlayer = MediaPlayer.create(getContext(), word.getSoundResourceId());
-                mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                    @Override
-                    public void onCompletion(MediaPlayer mp) {
-                        mp.release();
-                        mediaPlayer = null;
-                    }
-                });
-                mediaPlayer.start();
-            }else{
-                Toast.makeText(getContext(),"Trwa Odtwarzanie poprzedniej informacji",Toast.LENGTH_SHORT).show();
-            }
-        }
-
-    }
 
     private void makeCustomStyle(View view) {
         LinearLayout translateLayout = (LinearLayout) view.findViewById(translate_word_layout);
