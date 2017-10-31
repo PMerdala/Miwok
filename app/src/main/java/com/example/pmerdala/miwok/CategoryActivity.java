@@ -19,10 +19,17 @@ public abstract class CategoryActivity extends AppCompatActivity {
 
     private final int backgroud;
     private MediaPlayer mediaPlayer;
+    private MediaPlayer.OnCompletionListener completionListener ;
 
     public CategoryActivity(int backgroud) {
         super();
         this.backgroud = backgroud;
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        releaseMediaPlayer();
     }
 
     @Override
@@ -31,9 +38,21 @@ public abstract class CategoryActivity extends AppCompatActivity {
         setContentView(R.layout.word_list);
         List<Word> words = getWords();
         makeWordAdapter(words);
+        prepareMediaPlayer();
     }
 
     protected abstract List<Word> getWords();
+
+    private void prepareMediaPlayer(){
+        completionListener = new MediaPlayer.OnCompletionListener() {
+            @Override
+            public void onCompletion(MediaPlayer mp) {
+                if (mediaPlayer != null) {
+                    releaseMediaPlayer();
+                }
+            }
+        };
+    }
 
     private void makeWordAdapter(List<Word> words) {
         WordArrayAdapter itemsAdapter = new WordArrayAdapter(this, backgroud, words);
@@ -51,21 +70,18 @@ public abstract class CategoryActivity extends AppCompatActivity {
 
     }
 
-    private void play(int soundResourceId) {
-        if (mediaPlayer == null) {
-            mediaPlayer = MediaPlayer.create(this, soundResourceId);
-            mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
-                @Override
-                public void onCompletion(MediaPlayer mp) {
-                    mp.release();
-                    mediaPlayer = null;
-                }
-            });
-            mediaPlayer.start();
-        } else {
-            Toast.makeText(this, "Trwa Odtwarzanie poprzedniej informacji", Toast.LENGTH_SHORT).show();
+    private synchronized void releaseMediaPlayer() {
+        if (mediaPlayer != null) {
+            mediaPlayer.release();
+            mediaPlayer = null;
         }
+    }
 
+    private void play(int soundResourceId) {
+        releaseMediaPlayer();
+        mediaPlayer = MediaPlayer.create(this, soundResourceId);
+        mediaPlayer.start();
+        mediaPlayer.setOnCompletionListener(completionListener);
     }
 
 }
