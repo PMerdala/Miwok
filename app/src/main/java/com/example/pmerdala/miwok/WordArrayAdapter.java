@@ -68,7 +68,8 @@ public class WordArrayAdapter extends ArrayAdapter<Word> {
     private void makeCustomStyle(View view) {
         LinearLayout translateLayout = (LinearLayout) view.findViewById(translate_word_layout);
         translateLayout.setBackgroundResource(backgroudColorResourceId);
-        View playIcon = view.findViewById(play_icon_id);
+        ImageView playIcon = (ImageView)view.findViewById(play_icon_id);
         playIcon.setBackgroundResource(backgroudColorResourceId);
+        playIcon.setImageResource(R.drawable.ic_play_arrow_white_24dp);
     }
 }

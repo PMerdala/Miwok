@@ -15,7 +15,7 @@
     <LinearLayout
         android:id="@+id/list_word_translation_layout"
         android:orientation="vertical"
-        android:layout_weight="10"
+        android:layout_weight="7"
         android:layout_width="0dp"
         android:layout_height="match_parent"
         style = "@style/list_word_translation_layout"
@@ -36,7 +36,8 @@
         android:layout_weight="1"
         android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:paddingRight="16dp"
         android:gravity="center_vertical"
         tools:background="@color/category_numbers"
-        android:src="@android:drawable/ic_media_play"/>
+        android:src="@drawable/ic_play_arrow_white_24dp"/>
 </LinearLayout>
