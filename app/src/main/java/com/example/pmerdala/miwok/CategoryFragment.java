@@ -4,56 +4,57 @@ import android.content.Context;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import java.util.List;
 
 /**
- * Created by PMerd_000 on 2017-10-27.
+ * Created by merdala on 2017-11-02.
  */
 
-public abstract class CategoryActivity extends AppCompatActivity {
+public abstract class CategoryFragment extends Fragment {
 
-    private final int backgroud;
+    private final int background;
     private MediaPlayer mediaPlayer;
     private MediaPlayer.OnCompletionListener completionListener;
     AudioManager.OnAudioFocusChangeListener audioFocusChangeListemer;
     private AudioManager audioManager;
     private ImageView lastSelect = null;
 
-    public CategoryActivity(int backgroud) {
+    public CategoryFragment(int background){
         super();
-        this.backgroud = backgroud;
+        this.background = background;
     }
 
     @Override
-    protected void onStart() {
+    public void onStart() {
         super.onStart();
     }
 
     @Override
-    protected void onStop() {
+    public void onStop() {
         super.onStop();
         releaseMediaPlayer();
     }
 
+    @Nullable
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        audioManager = (AudioManager) getApplicationContext().getSystemService(Context.AUDIO_SERVICE);
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, Bundle savedInstanceState) {
+        audioManager = (AudioManager) getActivity().getSystemService(Context.AUDIO_SERVICE);
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.word_list);
+        View rootView = inflater.inflate(R.layout.word_list,container,false);
         List<Word> words = getWords();
-        makeWordAdapter(words);
+        makeWordAdapter(words,rootView);
         prepareMediaPlayer();
+        return rootView;
     }
-
     protected abstract List<Word> getWords();
 
     private void prepareMediaPlayer() {
@@ -86,9 +87,9 @@ public abstract class CategoryActivity extends AppCompatActivity {
         };
     }
 
-    private void makeWordAdapter(List<Word> words) {
-        WordArrayAdapter itemsAdapter = new WordArrayAdapter(this, backgroud, words);
-        final ListView parentView = (ListView) findViewById(R.id.list_item_view);
+    private void makeWordAdapter(List<Word> words,View rootView) {
+        WordArrayAdapter itemsAdapter = new WordArrayAdapter(rootView.getContext(), background, words);
+        final ListView parentView = (ListView)rootView.findViewById(R.id.list_item_view);
         parentView.setAdapter(itemsAdapter);
         parentView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -126,10 +127,9 @@ public abstract class CategoryActivity extends AppCompatActivity {
         }
         int audioFocusState = audioManager.requestAudioFocus(audioFocusChangeListemer, AudioManager.STREAM_MUSIC, AudioManager.AUDIOFOCUS_GAIN_TRANSIENT);
         if (audioFocusState == AudioManager.AUDIOFOCUS_REQUEST_GRANTED) {
-            mediaPlayer = MediaPlayer.create(this, soundResourceId);
+            mediaPlayer = MediaPlayer.create(getActivity(), soundResourceId);
             mediaPlayer.start();
             mediaPlayer.setOnCompletionListener(completionListener);
         }
     }
-
 }

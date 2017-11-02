@@ -8,4 +8,5 @@
     <color name="category_colors">#8800A0</color>
     <color name="category_numbers">#FD8E09</color>
     <color name="tan_background">#FFF7DA</color>
+    <color name="tab_unselect_item">#A1887F</color>
 </resources>

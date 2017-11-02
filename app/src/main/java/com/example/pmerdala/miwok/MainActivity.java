@@ -1,6 +1,9 @@
 package com.example.pmerdala.miwok;
 
+import android.app.FragmentManager;
 import android.content.Intent;
+import android.support.design.widget.TabLayout;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,24 +15,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        createOnClickListener(R.id.numbers, NumbersActivity.class);
-        createOnClickListener(R.id.family,FamilyActivity.class);
-        createOnClickListener(R.id.colors,ColorsActivity.class);
-        createOnClickListener(R.id.phrases, PhrasesActivity.class);
+        ViewPager viewPager = (ViewPager) findViewById(R.id.view_pager);
+        viewPager.setAdapter(new MiwokFragmentPagerAdapter(getSupportFragmentManager(),this));
+        TabLayout tabLayout = (TabLayout) findViewById(R.id.tab_layout);
+        tabLayout.setupWithViewPager(viewPager);
     }
 
-    private void createOnClickListener(int id,final Class<? extends AppCompatActivity> clazz){
-        TextView textview = (TextView) findViewById(id);
-        textview.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                executeIntent(clazz);
-            }
-        });
-    }
-
-    void executeIntent(final Class<? extends AppCompatActivity> clazz){
-        Intent intent = new Intent(this,clazz);
-        startActivity(intent);
-    }
 }

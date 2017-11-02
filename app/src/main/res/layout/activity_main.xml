@@ -7,47 +7,18 @@
     android:orientation="vertical"
     tools:context="com.example.pmerdala.miwok.MainActivity">
 
-    <FrameLayout
-        android:background="@color/category_numbers"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/numbers"
-            style="@style/CategoryStyle"
-            android:text="@string/category_numbers" />
-    </FrameLayout>
+        <android.support.design.widget.TabLayout
+            android:id="@+id/tab_layout"
+            style="@style/tab_layout"
+            app:tabTextColor="@color/tab_unselect_item"
+            app:tabSelectedTextColor="@android:color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </android.support.v4.view.ViewPager>
 
-    <FrameLayout
-        android:background="@color/category_family"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:id="@+id/family"
-            style="@style/CategoryStyle"
-            android:text="@string/category_family" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:background="@color/category_colors"
-            android:id="@+id/colors"
-            style="@style/CategoryStyle"
-            android:text="@string/category_colors" />
-    </FrameLayout>
-
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:background="@color/category_phrases"
-            android:id="@+id/phrases"
-            style="@style/CategoryStyle"
-            android:text="@string/category_phrases" />
-    </FrameLayout>
 </LinearLayout>
